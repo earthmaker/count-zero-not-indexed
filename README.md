@@ -17,13 +17,14 @@ Competition data (repository snapshots, call graphs, embeddings, `tasks.jsonl`, 
 | `coder/frozen/` | Frozen confirmatory analysis for P1-P5 (`confirm_p1p5.py`), its self-test log and `MANIFEST.txt`. | §5.4 |
 | `coder/scripts/` | The exact commands of the 81-task analysis, plus the descriptive and exploratory measures. | §5.6 |
 | `coder/a_lang_sensitivity.py` | Exploratory broadened absence lexicon. | §5.2b |
+| `SUPPLEMENT.md` | Values the paper cites but does not print: per-repository recall, the plan changes, both cause-labelling rule sets, and two definitions of reference-edit queries. | §4–§5 |
 | `PREREGISTRATION_en.md` | English translation of the pre-registration. The Korean original is the binding text; its SHA-256 is given at the top of the translation. | §5 |
 
 Not included: the three derived data files listed in `MANIFEST.txt` (`gold_vs_graph.json`, `part2_order.tsv`, `part2_strata.tsv`), which are built from competition data, and two items the pre-registration mentions: the competition's own data description (`spec/main_data_description.md`), which belongs to the competition materials, and the notebook folder of the exploratory auxiliary arm (`kernel_aux0211/`).
 
 ## Hashes posted before release
 
-On 1 November 2026 we posted these SHA-256 values to the competition forum (topic 754667). The post also states that the final 81-task results had been opened on 24 October, before the hashes were posted.
+On 1 November 2026 we posted these SHA-256 values to the Paper Track forum ([topic 754667](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper/discussion/754667)). The post also states that the final 81-task results had been opened on 24 October, before the hashes were posted.
 
 ```
 0e47607b2d56642e514f4908966f33fbd6bcc4e7a12be495f123095f21d98150  coder/frozen/MANIFEST.txt
@@ -70,4 +71,4 @@ Harness: swegemma 0.2.7 from the competition wheelhouse of 30 September 2026 (wh
 
 Bundle A is the public baseline by Roman Rozen ([notebook](https://www.kaggle.com/code/romanrozen/gemma-eda-baseline-for-a-start-lb-top-1), version 1), used under the Apache License 2.0; bundles B, C and D modify its prompts. See `NOTICE`.
 
-Code and bundles: Apache License 2.0 (`LICENSE`). Documentation, including this README and `PREREGISTRATION_en.md`: CC BY 4.0 (`LICENSE-docs`).
+Code and bundles: Apache License 2.0 (`LICENSE`). Documentation, including this README, `SUPPLEMENT.md` and `PREREGISTRATION_en.md`: CC BY 4.0 (`LICENSE-docs`).
