@@ -1,6 +1,6 @@
 # When count: 0 Means "Not Indexed": code and pre-registration
 
-Code, agent bundles and the frozen analysis for the Kaggle writeup "When `count: 0` Means "Not Indexed": Measuring Whether Code-Graph Gaps Reach a 4-bit Gemma 4 Agent's Conclusions" (Google - The Gemma 4 Developer Agent Paper Track).
+Code, agent bundles and the frozen analysis for the Kaggle writeup ["When count: 0 Means "Not Indexed": Code-Graph Gaps and a 4-bit Gemma 4 Agent"](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper/writeups/when-count-0-means-not-indexed-code-graph-gaps) (Google - The Gemma 4 Developer Agent Paper Track).
 
 Competition data (repository snapshots, call graphs, embeddings, `tasks.jsonl`, patches) are not redistributed here. Scripts that need them read the competition dataset from paths you set (see "Paths").
 
