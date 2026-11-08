@@ -17,7 +17,7 @@ Competition data (repository snapshots, call graphs, embeddings, `tasks.jsonl`, 
 | `coder/frozen/` | Frozen confirmatory analysis for P1-P5 (`confirm_p1p5.py`), its self-test log and `MANIFEST.txt`. | §5.4 |
 | `coder/scripts/` | The exact commands of the 81-task analysis, plus the descriptive and exploratory measures. | §5.5 |
 | `coder/a_lang_sensitivity.py` | Exploratory broadened absence lexicon. | §5.3 |
-| `SUPPLEMENT.md` | Values the paper cites but does not print: per-repository recall, the plan changes, both cause-labelling rule sets, and two definitions of reference-edit queries. | §4–§5 |
+| `SUPPLEMENT.md` | Values the paper cites but does not print: per-repository recall, the plan changes, the cause-labelling rule sets, two definitions of reference-edit queries, and the pre-registered auxiliary rows. | §4–§5 |
 | `PREREGISTRATION_en.md` | English translation of the pre-registration. The Korean original is the binding text; its SHA-256 is given at the top of the translation. | §5 |
 
 Not included: the three derived data files listed in `MANIFEST.txt` (`gold_vs_graph.json`, `part2_order.tsv`, `part2_strata.tsv`), which are built from competition data, and two items the pre-registration mentions: the competition's own data description (`spec/main_data_description.md`), which belongs to the competition materials, and the notebook folder of the exploratory auxiliary arm (`kernel_aux0211/`).
