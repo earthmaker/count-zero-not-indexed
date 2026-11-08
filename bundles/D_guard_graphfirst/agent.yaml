@@ -1,0 +1,21 @@
+# Source: public 0.12 bundle by Roman Rozen (Apache 2.0), Kaggle notebook
+# romanrozen/gemma-eda-baseline-for-a-start-lb-top-1 (Public LB 0.12 there). Text reproduced via
+# dmitriigluzdov 'gemma-4-measure-before-you-tune' sec.9 (content sha256 1ef16e9ccf23d2e4facb61c8ec24d67dae86a7a20c2fecb1544f857f2e1ca3d3).
+# Base of the empty-result-guard experiment: arm A uses it as is; arm B differs only by guard block + skill.
+# Arm D (added 2026-10-06) = arm B + the same "graph-first" block as arm C, placed at the same spot in
+# prompts/analyzer.md. D vs C isolates the guard (P3) on runs where the graph is actually queried.
+name: swe_coder
+model: gemma-4-31b-it-qat-w4a16-ct
+description: Autonomous software engineer that fixes repository issues with minimal, verified patches.
+instruction: !include prompts/system.md
+generate_content_config: !include configs/sampling.yaml
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - write_file
+  - get_status
+  - submit_patch
+  - agent_tool:
+      config_path: sub_agents/code_analyzer.yaml
+      skip_summarization: true

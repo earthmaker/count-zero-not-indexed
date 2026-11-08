@@ -1,0 +1,65 @@
+PASS P1 support | got support | want support
+PASS P1 oppose | got oppose | want oppose
+PASS P1 hold | got inconclusive | want inconclusive
+PASS P1 undet_noopp | got not decidable | want not decidable
+PASS P1 undet_nolang | got not decidable | want not decidable
+PASS P1 zero | got inconclusive | want inconclusive
+PASS P1 zero: Wilson upper bounds reported | got [0.114, 0.114] | want [0.114, 0.114]
+PASS P1 zero: per-stratum opportunity | got {'exposed': 30, 'covered': 30} | want {'exposed': 30, 'covered': 30}
+PASS P1 empty input | got not decidable | want not decidable
+PASS P1 one stratum only | got not decidable | want not decidable
+PASS P2 support | got support | want support
+PASS P2 oppose | got oppose | want oppose
+PASS P2 hold | got inconclusive | want inconclusive
+PASS P2 zero | got inconclusive | want inconclusive
+PASS P2 undet | got not decidable | want not decidable
+PASS P2 empty input | got not decidable | want not decidable
+PASS P3 support | got support | want support
+PASS P3 oppose | got oppose | want oppose
+PASS P3 hold | got inconclusive | want inconclusive
+PASS P3 undet | got not decidable | want not decidable
+PASS P3 empty input | got not decidable | want not decidable
+PASS P4 support | got support | want support
+PASS P4 oppose | got oppose | want oppose
+PASS P4 hold | got inconclusive | want inconclusive
+PASS P4 undet | got not decidable | want not decidable
+PASS P5 support | got support | want support
+PASS P5 oppose | got oppose | want oppose
+PASS P5 hold | got inconclusive | want inconclusive
+PASS P5 zero | got inconclusive | want inconclusive
+PASS P5 undet_empty | got not decidable | want not decidable
+PASS P5 empty input | got not decidable | want not decidable
+PASS P5 reports claim/unresolved rates + MH reference | got [True, True] | want [True, True]
+PASS P1 condition isolation | got not decidable | want not decidable
+PASS analyze_rows empty input -> all five not decidable | got ['not decidable', 'not decidable', 'not decidable', 'not decidable', 'not decidable'] | want ['not decidable', 'not decidable', 'not decidable', 'not decidable', 'not decidable']
+PASS scale disagreement flagged (OR inconclusive, RD support) | got ['inconclusive', 'support', False] | want ['inconclusive', 'support', False]
+PASS QA error rows = exit -1 or error | got {'A_baseline': 0, 'B_guard': 0, 'C_graphfirst': 1, 'D_guard_graphfirst': 1} | want {'A_baseline': 0, 'B_guard': 0, 'C_graphfirst': 1, 'D_guard_graphfirst': 1}
+PASS P4 reference excludes error rows | got 0 | want 0
+PASS exact_mcnemar(0,6) | got 0.03125 | want 0.03125
+PASS exact_mcnemar(3,3) | got 1.0 | want 1.0
+PASS wilson(0,10) upper | got 0.2775 | want 0.2775
+PASS Newcombe unpaired example | got [0.2, 0.0524, 0.3339] | want [0.2, 0.0524, 0.3339]
+PASS Newcombe paired symmetry | got [0.0, 0.0, 0.0] | want [0.0, 0.0, 0.0]
+PASS Newcombe paired, identical arms | got [0.0, True] | want [0.0, True]
+PASS Newcombe paired, phi boundary | got [0.0, True] | want [0.0, True]
+PASS single stratum exact test/CI = scipy (7, 10, 2, 10) | got [0.034889, 0.997261, 8.1538, 0.8821, 127.009] | want [0.034889, 0.997261, 8.1538, 0.8821, 127.009]
+PASS single stratum exact test/CI = scipy (3, 12, 9, 15) | got [0.98763, 0.07571, 0.2359, 0.0285, 1.482] | want [0.98763, 0.07571, 0.2359, 0.0285, 1.482]
+PASS single stratum exact test/CI = scipy (1, 5, 4, 4) | got [1.0, 0.039683, 0.0, 0.0, 1.283] | want [1.0, 0.039683, 0.0, 0.0, 1.283]
+PASS single stratum exact test/CI = scipy (0, 6, 3, 7) | got [1.0, 0.122378, 0.0, 0.0, 2.578] | want [1.0, 0.122378, 0.0, 0.0, 2.578]
+PASS two strata by hand P(T>=4)=1/36 | got 0.027777778 | want 0.027777778
+PASS two strata upper CI inf at max T | got True | want True
+PASS invariant to stratum order and uninformative strata | got [0.073090635, 2] | want [0.073090635, 2]
+PASS CI excludes 1 <=> p < .05 [(9, 10, 2, 10)] | got True | want True
+PASS CI excludes 1 <=> p < .05 [(5, 10, 4, 10)] | got False | want False
+PASS CI excludes 1 <=> p < .05 [(1, 10, 8, 10), (2, 6, 5, 6)] | got True | want True
+PASS readout: gold A_lang (positive) | got [1, True, 1, 0] | want [1, True, 1, 0]
+PASS readout: gold symbol grepped after empty (negative) | got [1, False] | want [1, False]
+PASS readout: no gold event | got [0, False, True, True, 2] | want [0, False, True, True, 2]
+PASS gold_names nested in method -> function before first <locals> | got [['openapi', 'setup'], ['extract', 'get_locals']] | want [['openapi', 'setup'], ['extract', 'get_locals']]
+PASS gold_names misc | got ['APIRoute', 'app', 'cache_key', 'get_request_handler', 'solve'] | want ['APIRoute', 'app', 'cache_key', 'get_request_handler', 'solve']
+PASS gold_names strict | got ['openapi', 'solve'] | want ['openapi', 'solve']
+PASS event_names dunder query -> owner | got [['APIRoute', '__init__'], ['APIRoute', '__init__'], ['__init__']] | want [['APIRoute', '__init__'], ['APIRoute', '__init__'], ['__init__']]
+PASS readout: APIRoute.__init__ query counts as a gold event (expanded), not strict | got [1, True, True, 0, 0, 1] | want [1, True, True, 0, 0, 1]
+PASS real data: re-implemented window A_lang = 0.2 A_lang (mismatch count) | got 0 | want 0
+PASS real data: events were actually read (nonzero) | got True | want True
+SELFTEST PASS analysis 1.1

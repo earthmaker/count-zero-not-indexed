@@ -1,0 +1,30 @@
+# Gemma4Paper Part 2 -- P1-P5 confirmatory analysis: frozen manifest
+Frozen at: 2026-10-12T07:02:55Z (2026-10-12 16:02 KST)  analysis 1.1
+Basis: fixes, in code, the tests and decision rules of preregistered P1-P5 before the 81 confirmatory tasks finished
+(39/81 done; permutation positions 40+ not yet run). Supersedes analysis 1.0 (sha256 63263b01..., never published), revised after an internal audit.
+
+## Hash scope (all lines below are part of the commitment)
+ae726b5fe004281ccbf083878ff33c723a29d321096a7ab2e6f1459dc8d08071  confirm_p1p5.py
+5f5d4f98193b81c39626b69be969d89897bcdea50a1b40b65245d6ee7b3ad4f4  selftest.log
+376bdbb4c9cf8925c080e96afa780fce72e2c720ec35caa88d820d86d29cf5ce  trace_events.py  (RULES_VERSION 0.2, git blob 7ad46b9e9703251fda1415fa1adcb4b98e6d108f, freeze commit 93a0eb78)
+f44687b2633610f90481619578a28a16554af626a46d2d1e1dbd8cae2975fb31  gold_vs_graph.json
+5ee35d4950425d2c173503647cfff79288055b4e09bdedf807e37fe529c9806e  part2_order.tsv
+fe794fe93640fd871ca6a8224380201ce4217f9fcb0b1f8e9171b4850a395e7b  part2_strata.tsv
+
+## Seen before freezing
+- Progress readout (coder/run_readout.py, descriptive): per-condition resolved counts, graph calls, E_empty counts,
+  tasks with a cross-check after E_empty, S_claim-unresolved counts, and condition-pair resolution discordance
+  (including C vs D discordant pairs = the b, c of P4), for 39/81 tasks.
+- Manuscript section 5.2b: A_lang after E_empty 0/186; utterance within the window 10/166.
+## Not seen
+- Any split by exposure stratum; any P1-P5 test value or interval.
+- Outputs of this script (v1.0 at 15:09 KST and v1.1) run on the interim 39-task data were written only to check that
+  the code runs (exit code); the results files were not opened and will not be opened before this manifest's hash is
+  published. Exception, disclosed: after the v1.0 run its sample-check block was printed once (39 tasks, 39 rows per
+  condition, no missing trajectory, permutation prefix OK, error rows per condition) -- descriptive counts of the
+  same kind as the progress readout; no hypothesis-level number.
+
+## Run
+python3 confirm_p1p5.py selftest --coder <dir of trace_events.py> [<run>/out ...]   -> SELFTEST PASS analysis 1.1
+python3 confirm_p1p5.py build --coder <dir> --derived <dir> --out rows.jsonl <run>/out ...
+python3 confirm_p1p5.py analyze --derived <dir> --out <dir> rows.jsonl              -> results.json, results.md, p1_hits.jsonl

@@ -1,0 +1,9 @@
+This repository includes material derived from:
+
+  Gemma EDA baseline (public Kaggle notebook, version 1) by Roman Rozen
+  https://www.kaggle.com/code/romanrozen/gemma-eda-baseline-for-a-start-lb-top-1
+  Licensed under the Apache License, Version 2.0.
+
+bundles/A_baseline reproduces that baseline's agent configuration. bundles/B_guard,
+bundles/C_graphfirst and bundles/D_guard_graphfirst modify its prompts and add a skill
+(empty-result-check) in B and D.
