@@ -1,6 +1,6 @@
 """Tests the import and bundle-validation block of the kernel v7 patch without a GPU (local machine, no competition data needed).
 
-Usage: <venv>/bin/python test_kernel_block.py <patched kernel.py> <bundle root>
+Usage: <venv>/bin/python harness_test_kernel_block.py <patched kernel.py> <bundle root>
   1. Does the old import line (swegemma.models.discovery) work in this version? It must fail on 0.2.11 (reproducing the v7 incident = positive control)
   2. Do the patch's import block (cut from the kernel source and exec'd) and the starter notebook's remaining imports work? (torch and vllm are skipped; not installed locally)
   3. Four bundles: adk_submission.validate_directory, the patch's validate_single_declared_model, discover_adapters

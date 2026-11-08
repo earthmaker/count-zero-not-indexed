@@ -3,6 +3,7 @@
 Symbols: identifier-like text in backticks, dotted `a.b` paths, `name(` call forms, CamelCase. Each symbol is matched against the graph as
   exact      : the string is a node name verbatim
   suffix     : some node ends in ".symbol" (would have resolved had the README's resolve_node_name existed)
+  substring  : the symbol occurs inside some node name, ignoring case, but neither of the above
   absent     : nowhere in the graph (no partial name match either)
 and the get_code_neighbors and search_similar_code answers (status, count) are recorded.
 Run: <venv>/bin/python issue_symbols.py  -> issue_symbols.json

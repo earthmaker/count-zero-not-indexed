@@ -1,4 +1,4 @@
-"""Part 1 final statistics: restricts to judgeable tasks, with Wilson 95% intervals, (repository, commit) deduplication, per-repository strata, task-cluster bootstrap and the R7 composite.
+"""Part 1 final statistics: restricts to judgeable tasks (plus an "all 129 (reference only)" row), with Wilson 95% intervals, (repository, commit) deduplication, per-repository strata, task-cluster bootstrap and the R7 composite.
 Inputs: gold_vs_graph.json, rt_out/, rt_out_gold/, issue_symbols.json, gold_check.json, full/graphs/
 """
 import collections, glob, json, math, os, random, re

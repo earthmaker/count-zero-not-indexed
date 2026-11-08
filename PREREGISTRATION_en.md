@@ -1,6 +1,6 @@
 > English translation of the Korean pre-registration. The Korean original is the binding text; its SHA-256 is e6756e3fb1470988974e6ecfbcba38d4a7b8b6280afb5b8ae8dca99ffb3b9565. Translation made on 2026-11-08; where the translation and the original differ, the original governs.
 
-# Contest / Gemma4Paper · Part 2 analysis pre-registration
+# Gemma4Paper · Part 2 analysis pre-registration
 
 > Written on the night of 2026-10-05, **before seeing the first Part 2 trajectories (v3 smoke test)**. What this document fixes is not changed after the main run —
 > if something must change, it is not deleted but appended to the "Change log" with the date and reason, and disclosed in the manuscript as "a deviation from the pre-registration".
@@ -15,7 +15,7 @@
 | Primary window k | **3** (shared by A_lang and X, code `K_DEFAULT = 3`) | ✅ Author's decision on the night of 10-05, before seeing the v3 trajectories |
 | Stratum table | `[internal path]/derived/part2_strata.tsv` (strict 109) · exposed 47 · covered 34 · unobserved 28 | ✅ Frozen (exposure definition a∪b, author's decision 10-05) |
 | Bundles | `bundles/A_baseline` · `bundles/B_guard` (the only difference is the guard block + the skill `empty-result-check`) | ✅ Frozen. B was submitted to the main competition on 10-05 (ref 56854337, zip sha256 `a2a67657…`) |
-| Harness | competition wheelhouse, 09-30 version (swegemma 0.2.7 — the version string is unchanged, so it is recorded by sha256) · default budget per task 60 minutes · 100 tool calls · 300 seconds per command | used as-is by the kernel (`kernel/gemma4paper_part2.py` lines 142–143) |
+| Harness | competition wheelhouse, 09-30 version (swegemma 0.2.7 — the version string is unchanged, so it is recorded by sha256) · default budget per task 60 minutes · 100 tool calls · 300 seconds per command | used as-is by the kernel (`kernel/gemma4paper_part2.py`; in this release the defaults are on lines 215–216) |
 
 🔴 **The v3 smoke-test trajectories (fastapi_11194 · rich_3061 · requests_6757, A × 3) are excluded from the confirmatory analysis.** The only thing those trajectories may be used for is
 fixing *parsing defects* of the judge (failure to read a format · empty strings); the event *definitions* (what counts as an absence conclusion) are not changed.
@@ -108,13 +108,13 @@ How to read this:
 - 10-06 14:50 (design addition — before confirmatory runs, no change to the main-arm definitions): by author's decision, **the §4-1 auxiliary arm (proxy Gemma 4 31B)** was added. Reported only as an exploratory result and not used for P1–P5 verdicts.
 - Night of 10-06 (**design change — before confirmatory runs**, after seeing the pilot v4 results): by author's decision, **condition C (`bundles/C_graphfirst`)** is added.
   - Trigger: in the v4 pilot (A and B × 10, L4 · competition model) the graph tools were called **2 times in 20 runs** (A: fastapi_14953 `search_similar_code` 1 · rich_4077 `get_code_neighbors` 1, B: 0). Same direction as v3's 3 runs with 0 calls and the proxy probe's 0 calls. In A, E_empty hardly occurs, so P1 is undefined.
-  - Definition of C: differs from A only by one "Graph first (required)" block in `prompts/analyzer.md` — the analyzer calls `search_similar_code` and `get_code_neighbors` (and `get_code_subgraph` if needed) with the issue's identifiers before the first `run_command`. **It says nothing about how to read empty results** (that is B's treatment). Passed the format check `adk_submission.validate_directory` (on a lab workstation).
+  - Definition of C: differs from A only by one "Graph first (required)" block in `prompts/analyzer.md` — the analyzer calls `search_similar_code` and `get_code_neighbors` (and `get_code_subgraph` if needed) with the issue's identifiers before the first `run_command`. **It says nothing about how to read empty results** (that is B's treatment). Passed the format check `adk_submission.validate_directory` (on a local workstation).
   - Measure moved: **P1 is measured in condition C** (exposed vs. covered, decision rule unchanged). "The baseline does not call the graph" (A's graph call rate) is reported from A as a **new descriptive result** — a proportion and interval, not a hypothesis test.
   - P3 (guard manipulation check) stays A vs. B. ⚠️ If both A and B hardly call the graph and E_empty is rare, P3 is also undefined — then it is reported as "not definable (event count n)". D (= B + Graph first), which tests the guard on top of graph forcing, was not included in this change (open, author's decision).
   - Sample, order, k and judge definitions are not changed. 81 × 3 conditions at r = 1 is about 38h, within the quota before the paper deadline (11-12 UTC). Pilot v4 trajectories are not included in the confirmatory analysis.
 - Night of 10-06 (**design change — before confirmatory runs**, continuing the item just above): by author's decision, **condition D (`bundles/D_guard_graphfirst`) = B + the same "Graph first" block (in the same place as C)** is added. The difference between D and C is the same as between B and A (two guard blocks + the skill) (checked by diff).
   - Measure moved: **P3 (guard manipulation check) and P4 (non-inferiority) are measured as D vs. C pairs** — the guard is tested on a condition where the graph is actually called. A vs. B reports the same measures as auxiliary (if there are no events, "not definable (n)").
-  - 81 × 4 conditions at r = 1 ≈ 50h, within quota before the paper deadline. Passed the format check (on a lab workstation) · C and D added to the bundle dataset.
+  - 81 × 4 conditions at r = 1 ≈ 50h, within quota before the paper deadline. Passed the format check (on a local workstation) · C and D added to the bundle dataset.
   - Smoke test v5 before confirmatory runs: C and D × 2 tasks (fastapi_14953 · rich_4077 — tasks on which A called the graph once in pilot v4, outside the confirmatory sample). Purpose: whether the "Graph first" block actually produces graph calls (manipulation check). Not included in the confirmatory analysis.
 - 10-07 03:00 (**§4-1 auxiliary arm stopped** — no change to the main-arm definitions): author's decision. Only s1 and s2 (9 tasks each × A and B, proxy google/gemma-4-31b) are run; s3–s9 are not.
   - Basis: in 36 runs, 0 resolved · 1 graph call (s1 B). The `error` field newly added in s2 confirmed that the cause of exit -1 is a **proxy empty response** (content and tool_calls None, usage 0 tokens — the harness discards even the patch to be submitted on that exception) (s2 5/18, B 4 · A 1). This failure does not exist in competition grading (local vLLM on L4) and contaminates the auxiliary arm's comparison. The L4 exit -1 (v4) has a different cause (ContextWindowExceeded).
@@ -153,7 +153,7 @@ How to read this:
 - What was settled:
   1. Condition: P2 uses P1's outcome (A_lang) as its explanatory variable, so it uses the same C as P1. P5 does not use graph events and so was not subject to the 10-06 move, so it uses
      the original baseline A. The same values in other conditions go in an auxiliary table without verdicts. The interpretation of P5 (A) is restricted to "a correlation in a condition where the graph path is closed".
-     In the auxiliary P2, B and D raise A_lang when the agent repeats the guard text (empty results are "UNCONFIRMED, not "does not exist""), so this is not read as an absence conclusion.
+     In the auxiliary P2, B and D raise A_lang when the agent repeats the guard text (empty results are "UNCONFIRMED, not 'does not exist'"), so this is not read as an absence conclusion.
   2. Scale: "the 95% interval of the difference" is judged by the exact 95% interval of the common odds ratio produced by the named test (exact Mantel–Haenszel = repository-stratified exact conditional test)
      (Fisher combination does not produce an interval). The MH risk difference and Sato interval are reported alongside, and if the verdicts on the two scales disagree,
      that fact is noted in the table (rd_verdict · scale_agree). Two-sided p = 2 × min(one-sided) (may differ from the two-sided p of R's mantelhaen.test).
@@ -177,7 +177,7 @@ How to read this:
   9. The task-level outcome is "any of its events" (same rule as the P3 wording). The manuscript §5.4 wording "first event per task" (10-03, before this document) is to be corrected.
 
 
-- Manuscript Table 3 row and text for the places to fix in the manuscript: [internal path] `CHANGELOG_entry.md` §"Manuscript Table 3" · §"Places to fix together in the manuscript" (manuscript update is the next task).
+- Manuscript Table 3 row and text for the places to fix in the manuscript: an internal note, sections "Manuscript Table 3" and "Places to fix together in the manuscript" (manuscript update is the next task).
 - Hash publication (author's decision "Kaggle private notebook"): `earthmaker/gemma4paper-confirm-p1p5-commit` version 1, run completed 2026-10-12 07:07:31 UTC
   (after the MANIFEST fix at 07:02:55Z). The notebook restored MANIFEST.txt · confirm_p1p5.py · selftest.log from base64 and printed their sha256;
   all three matched the values above (selftest.log 5f5d4f98193b81c39626b69be969d89897bcdea50a1b40b65245d6ee7b3ad4f4). No data, GPU or internet.
@@ -187,8 +187,10 @@ How to read this:
 
 Places where the translation replaces internal detail with a neutral expression (contents not given):
 
-- Internal file paths replaced by "[internal path]": 4
-- Internal machine names replaced by "a lab workstation": 2
+- Internal file paths replaced by "[internal path]": 3
+- Internal machine names replaced by "a local workstation": 2
 - References to the internal decision log, given as "internal decision log" without its file name: 2
 - File name of an internal review document replaced by "internal mid-point review document": 1
 - "User's decision" rendered as "author's decision" throughout (the author is the person who made these decisions).
+- The title drops an internal folder prefix, and one internal note is referred to as "an internal note" (its path and file name are omitted).
+- The kernel line reference in §0 is updated to this release; the original cites the line numbers of the internal copy.

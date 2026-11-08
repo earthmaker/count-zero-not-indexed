@@ -1,5 +1,6 @@
 """End of Part 1: compares reference-patch runs (rt_out_gold) with base runs (rt_out) via junit and counts judgeable tasks.
-Judgeable = reference patch applies, all test_patch tests pass on the reference run (0 failures/errors, collection ok), and at least one test failing on base (F2P >= 1).
+Judgeable = reference patch applies, all test_patch tests pass on the reference run (no testcase with a failure or error element, collection ok), and at least one test failing on base (F2P >= 1).
+Also prints a relaxed rule (no test newly broken by the reference, F2P >= 1) and stores it as "relaxed"; suite-level error counts are not used.
 """
 import json, os, collections, xml.etree.ElementTree as ET
 S = os.environ["G4"]   # work folder (part/, full/, rt_out/, rt_out_gold/)
