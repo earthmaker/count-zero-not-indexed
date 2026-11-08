@@ -13,10 +13,10 @@ Competition data (repository snapshots, call graphs, embeddings, `tasks.jsonl`, 
 | `bundles/` | The four agent configurations: A (public baseline used as is), B (A plus the empty-answer guard), C (A plus the graph-first block), D (B plus the graph-first block). | §5.1 |
 | `kernel/` | Kaggle notebook that runs the bundles on the public tasks (L4 x4) and keeps the traces; `aux/` holds its helper scripts. | §5.1 |
 | `coder/trace_events.py` | Rule-based event judge, version 0.2, frozen before any confirmatory output was read. | §5.2 |
-| `coder/run_readout.py` | Descriptive progress readout used during the runs (no tests). | §5.6 |
+| `coder/run_readout.py` | Descriptive progress readout used during the runs (no tests). | §5.5 |
 | `coder/frozen/` | Frozen confirmatory analysis for P1-P5 (`confirm_p1p5.py`), its self-test log and `MANIFEST.txt`. | §5.4 |
-| `coder/scripts/` | The exact commands of the 81-task analysis, plus the descriptive and exploratory measures. | §5.6 |
-| `coder/a_lang_sensitivity.py` | Exploratory broadened absence lexicon. | §5.2b |
+| `coder/scripts/` | The exact commands of the 81-task analysis, plus the descriptive and exploratory measures. | §5.5 |
+| `coder/a_lang_sensitivity.py` | Exploratory broadened absence lexicon. | §5.3 |
 | `SUPPLEMENT.md` | Values the paper cites but does not print: per-repository recall, the plan changes, both cause-labelling rule sets, and two definitions of reference-edit queries. | §4–§5 |
 | `PREREGISTRATION_en.md` | English translation of the pre-registration. The Korean original is the binding text; its SHA-256 is given at the top of the translation. | §5 |
 
